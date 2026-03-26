@@ -10,4 +10,3 @@ async def create_product(
 ):
     return data
 
-# POST /api/calculate {"a": 3, "b": 4, "operator": "+"} -> {"result": 7}
