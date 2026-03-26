@@ -21,3 +21,12 @@ class ProductCreate(BaseModel):
     price: Annotated[float, Field(ge=0, lt=100_000_000)]
     stock: Annotated[int, Field(ge=1)]
     status: ProductStatus
+
+
+class ProductUpdate(BaseModel):
+    name: Annotated[str | None, Field(min_length=5, max_length=128)] = None
+    descriptioin: Optional[str] = None
+    price: Annotated[float | None, Field(ge=0, lt=100_000_000)] = None
+    stock: Annotated[int | None, Field(ge=1)] = None
+    status: Optional[ProductStatus] = None
+    
