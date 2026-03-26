@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 
+from schemas import Data
+
 
 app = FastAPI(title='Request Body bilan ishlash')
 
@@ -10,4 +12,16 @@ async def create_product(
 ):
     return data
 
-# POST /api/calculate {"a": 3, "b": 4, "operator": "+"} -> {"result": 7}
+
+@app.post('/api/calculate')
+async def calculate(data: Data):
+    if data.operator == '+':
+        return {'result': data.a + data.b}
+    elif data.operator == '-':
+        return {'result': data.a - data.b}
+    elif data.operator == '*':
+        return {'result': data.a * data.b}
+    elif data.operator == '/':
+        return {'result': data.a / data.b}
+    else:
+        return {'error': 'operator not found'}
