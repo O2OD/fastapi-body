@@ -1,16 +1,17 @@
 from fastapi import FastAPI
 
-from schemas import Data
+from schemas import Data, ProductCreate
 
 
 app = FastAPI(title='Request Body bilan ishlash')
 
+products: list[dict] = []
+
 
 @app.post('/api/products')
-async def create_product(
-    data: dict
-):
-    return data
+async def create_product(data: ProductCreate):
+    products.append(data)
+    return {'message': 'ok'}
 
 
 @app.post('/api/calculate')
